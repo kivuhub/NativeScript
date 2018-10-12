@@ -74,12 +74,12 @@ function getAttachListener(): android.view.View.OnAttachStateChangeListener {
     return attachStateChangeListener;
 }
 
-export function reloadPage(): void {
+export function reloadPage(context?: LivesyncContext): void {
     const activity = application.android.foregroundActivity;
     const callbacks: AndroidActivityCallbacks = activity[CALLBACKS];
     const rootView: View = callbacks.getRootView();
 
-    if (!rootView || !rootView._onLivesync()) {
+    if (!rootView || !rootView._onLivesync(context)) {
         callbacks.resetActivityContent(activity);
     }
 }

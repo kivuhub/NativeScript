@@ -70,11 +70,11 @@ export function setApplication(instance: iOSApplication | AndroidApplication): v
     app = instance;
 }
 
-export function livesync(file?: string) {
+export function livesync(context?: LivesyncContext) {
     events.notify(<EventData>{ eventName: "livesync", object: app });
     const liveSyncCore = global.__onLiveSyncCore;
     if (liveSyncCore) {
-        liveSyncCore(file);
+        liveSyncCore(context);
     }
 }
 

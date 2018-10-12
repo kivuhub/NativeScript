@@ -200,9 +200,9 @@ export abstract class ViewCommon extends ViewBase implements ViewDefinition {
         }
     }
 
-    _onLivesync(file?: string): boolean {
-        if (file) {
-            loadCss(file);
+    _onLivesync(context?: LivesyncContext): boolean {
+        if (context.resource) {
+            loadCss(context.resource);
             this._onCssStateChange();
             return true;
         } else {
